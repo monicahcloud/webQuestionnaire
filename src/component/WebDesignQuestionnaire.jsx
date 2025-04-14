@@ -714,6 +714,18 @@ const WebDesignQuestionnaire = () => {
             Submit
           </button>
         </div>
+
+        <footer className="w-full bg-gray-100 text-gray-600 py-4 mt-12">
+          <div className="max-w-7xl mx-auto px-4 flex md:flex-col flex-row justify-between items-center text-sm">
+            <p className="md:text-center text-left">
+              © {new Date().getFullYear()} VitaNova Designs. All rights
+              reserved.
+            </p>
+            <p className="md:text-center text-right md:mt-2 mt-0">
+              Designed with ❤️ by Monicah Cloud
+            </p>
+          </div>
+        </footer>
       </form>
     </div>
   );
