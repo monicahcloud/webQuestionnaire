@@ -95,6 +95,11 @@ const WebDesignQuestionnaire = () => {
       return { ...prevData, brandImage: updatedBrandImage };
     });
   };
+  const formatBrandImage = (brandImage) => {
+    return Object.entries(brandImage)
+      .map(([index, value]) => `Pair ${Number(index) + 1}: ${value}`)
+      .join("\n");
+  };
 
   const goals = [
     {
@@ -726,6 +731,48 @@ const WebDesignQuestionnaire = () => {
             </p>
           </div>
         </footer>
+
+        {/* Hidden fields for sending formData via EmailJS */}
+        <input
+          type="hidden"
+          name="projectGoals"
+          value={formData.projectGoals.join(", ")}
+        />
+        <input
+          type="hidden"
+          name="websitePurpose"
+          value={formData.websitePurpose.join(", ")}
+        />
+        <input
+          type="hidden"
+          name="websiteFeatures"
+          value={formData.websiteFeatures.join(", ")}
+        />
+        <input
+          type="hidden"
+          name="pageRequirements"
+          value={formData.pageRequirements.join(", ")}
+        />
+        <input
+          type="hidden"
+          name="brandingGuidelines"
+          value={formData.brandingGuidelines.join(", ")}
+        />
+        <input
+          type="hidden"
+          name="technicalRequirements"
+          value={formData.technicalRequirements.join(", ")}
+        />
+        <input
+          type="hidden"
+          name="services"
+          value={formData.services.join(", ")}
+        />
+        <input
+          type="hidden"
+          name="brandImage"
+          value={formatBrandImage(formData.brandImage)}
+        />
       </form>
     </div>
   );
