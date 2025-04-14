@@ -100,7 +100,7 @@ const WebDesignQuestionnaire = () => {
       .map(([index, value]) => `Pair ${Number(index) + 1}: ${value}`)
       .join("\n");
   };
-
+  console.log(formData.brandImage);
   const goals = [
     {
       id: 1,
@@ -393,7 +393,7 @@ const WebDesignQuestionnaire = () => {
             className="w-48 h-48 mr-4 -rotate-12 "
             alt="complete design"
           />
-          <h1 className="text-6xl md:text-7xl font-bold text-center text-cyan-600">
+          <h1 className="text-5xl md:text-7xl font-bold text-center text-cyan-600 overflow-hidden">
             WebDesign <span className="text-cyan-800"> Questionnaire</span>{" "}
           </h1>
         </div>
@@ -736,37 +736,37 @@ const WebDesignQuestionnaire = () => {
         <input
           type="hidden"
           name="projectGoals"
-          value={formData.projectGoals.join(", ")}
+          value={formData.projectGoals.join(" , ")}
         />
         <input
           type="hidden"
           name="websitePurpose"
-          value={formData.websitePurpose.join(", ")}
+          value={formData.websitePurpose.join(" , ")}
         />
         <input
           type="hidden"
           name="websiteFeatures"
-          value={formData.websiteFeatures.join(", ")}
+          value={formData.websiteFeatures.join(" , ")}
         />
         <input
           type="hidden"
           name="pageRequirements"
-          value={formData.pageRequirements.join(", ")}
+          value={formData.pageRequirements.join(" , ")}
         />
         <input
           type="hidden"
           name="brandingGuidelines"
-          value={formData.brandingGuidelines.join(", ")}
+          value={formData.brandingGuidelines.join(" , ")}
         />
         <input
           type="hidden"
           name="technicalRequirements"
-          value={formData.technicalRequirements.join(", ")}
+          value={formData.technicalRequirements.join(" , ")}
         />
         <input
           type="hidden"
           name="services"
-          value={formData.services.join(", ")}
+          value={formData.services.join(" , ")}
         />
         <input
           type="hidden"
