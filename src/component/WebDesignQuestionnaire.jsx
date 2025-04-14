@@ -1,36 +1,36 @@
-import { useState, useRef } from 'react'
-import emailjs from '@emailjs/browser'
-import img from '../assets/static.svg'
+import { useState, useRef } from "react";
+import emailjs from "@emailjs/browser";
+import img from "../assets/static.svg";
 
 const WebDesignQuestionnaire = () => {
-  const form = useRef()
+  const form = useRef();
 
   const sendEmail = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     emailjs
-      .sendForm('service_kwpafw8', 'template_blsn607', form.current, {
-        publicKey: 'XnLTFneXRVkwkphGD',
+      .sendForm("service_kwpafw8", "template_blsn607", form.current, {
+        publicKey: "XnLTFneXRVkwkphGD",
       })
       .then(
         () => {
-          document.getElementById('questionnaire-form').reset()
-          alert('SUCCESS!')
+          document.getElementById("questionnaire-form").reset();
+          alert("SUCCESS!");
         },
         (error) => {
-          alert('FAILED to send...', error.text)
+          alert("FAILED to send...", error.text);
         }
-      )
-  }
+      );
+  };
   const [formData, setFormData] = useState({
-    date: '',
-    client: '',
-    businessName: '',
-    email: '',
-    phone: '',
-    productsAndServices: '',
-    idealCustomers: '',
-    newOrRedesign: '',
+    date: "",
+    client: "",
+    businessName: "",
+    email: "",
+    phone: "",
+    productsAndServices: "",
+    idealCustomers: "",
+    newOrRedesign: "",
     projectGoals: [],
     websitePurpose: [],
     websiteFeatures: [],
@@ -39,339 +39,339 @@ const WebDesignQuestionnaire = () => {
     technicalRequirements: [],
     services: [],
     brandImage: {},
-    timeframe: '',
-    budget: '',
-    additionalNotes: '',
-  })
+    timeframe: "",
+    budget: "",
+    additionalNotes: "",
+  });
   //  const handleSubmit = (e) => {
   //    e.preventDefault()
   //    console.log('Form Submitted:', formData)
   //  }
 
   const handleChange = (e) => {
-    const { name, type } = e.target
-    const value = e.target.value
-    const isChecked = e.target.checked
+    const { name, type } = e.target;
+    const value = e.target.value;
+    const isChecked = e.target.checked;
 
-    if (type === 'checkbox') {
+    if (type === "checkbox") {
       if (isChecked) {
         // If checked, add the value to the array
         setFormData({
           ...formData,
           [name]: [...new Set([...formData[name], value])], // Use Set to avoid duplicates
-        })
+        });
       } else {
         // If unchecked, remove the value from the array
         setFormData({
           ...formData,
           [name]: formData[name].filter((item) => item !== value),
-        })
+        });
       }
     } else {
       // Handle other input types (text, textarea, etc.)
-      setFormData({ ...formData, [name]: value })
+      setFormData({ ...formData, [name]: value });
     }
-  }
+  };
 
   const options = [
-    ['Greyscale', 'Colorful'],
-    ['Authoritative', 'Friendly'],
-    ['Minimalistic', 'Complex'],
-    ['Conservative', 'Nonconventional'],
-    ['Masculine', 'Feminine'],
-    ['Professional', 'Casual'],
-    ['Luxurious', 'Natural'],
-    ['Serious', 'Fun'],
-    ['Classic', 'Modern'],
-    ['Non-Interactive', 'Interactive'],
-    ['Retro', 'Futuristic'],
-    ['Elegant', 'Sporty'],
-    ['Safe', 'Extreme'],
-  ]
+    ["Greyscale", "Colorful"],
+    ["Authoritative", "Friendly"],
+    ["Minimalistic", "Complex"],
+    ["Conservative", "Nonconventional"],
+    ["Masculine", "Feminine"],
+    ["Professional", "Casual"],
+    ["Luxurious", "Natural"],
+    ["Serious", "Fun"],
+    ["Classic", "Modern"],
+    ["Non-Interactive", "Interactive"],
+    ["Retro", "Futuristic"],
+    ["Elegant", "Sporty"],
+    ["Safe", "Extreme"],
+  ];
 
   const handleOptionChange = (index, value) => {
     setFormData((prevData) => {
-      const updatedBrandImage = { ...prevData.brandImage, [index]: value }
-      return { ...prevData, brandImage: updatedBrandImage }
-    })
-  }
+      const updatedBrandImage = { ...prevData.brandImage, [index]: value };
+      return { ...prevData, brandImage: updatedBrandImage };
+    });
+  };
 
   const goals = [
     {
       id: 1,
-      title: 'Clear design and logical structure',
+      title: "Clear design and logical structure",
     },
     {
       id: 2,
-      title: 'Custom Content Management System',
+      title: "Custom Content Management System",
     },
     {
       id: 3,
-      title: 'Content Management System platform',
+      title: "Content Management System platform",
     },
     {
       id: 4,
-      title: 'Multilingualism ',
+      title: "Multilingualism ",
     },
     {
       id: 5,
-      title: 'Sell products',
+      title: "Sell products",
     },
     {
       id: 6,
-      title: 'Promote new services',
+      title: "Promote new services",
     },
     {
       id: 7,
-      title: 'Establishing a brand',
+      title: "Establishing a brand",
     },
     {
       id: 8,
-      title: 'Improving company image',
+      title: "Improving company image",
     },
-  ]
+  ];
 
   const questions = [
     {
       id: 1,
-      title: 'eCommerce',
+      title: "eCommerce",
     },
     {
       id: 2,
-      title: 'Business',
+      title: "Business",
     },
     {
       id: 3,
-      title: 'Blog',
+      title: "Blog",
     },
     {
       id: 4,
-      title: 'Portfolio',
+      title: "Portfolio",
     },
     {
       id: 5,
-      title: 'Event',
+      title: "Event",
     },
     {
       id: 6,
-      title: 'Membership',
+      title: "Membership",
     },
     {
       id: 7,
-      title: 'Personal',
+      title: "Personal",
     },
     {
       id: 8,
-      title: 'Education',
+      title: "Education",
     },
     {
       id: 9,
-      title: 'Non-Profit',
+      title: "Non-Profit",
     },
     {
       id: 10,
-      title: 'Social Media',
+      title: "Social Media",
     },
     {
       id: 11,
-      title: 'Other',
+      title: "Other",
     },
-  ]
+  ];
   const requirements = [
     {
       id: 1,
-      title: 'Website design',
+      title: "Website design",
     },
     {
       id: 2,
-      title: 'Email design',
+      title: "Email design",
     },
     {
       id: 3,
-      title: 'Landing page',
+      title: "Landing page",
     },
     {
       id: 4,
-      title: 'HTML/CSS/JS Project',
+      title: "HTML/CSS/JS Project",
     },
     {
       id: 5,
-      title: 'CMS platform',
+      title: "CMS platform",
     },
-  ]
+  ];
   const services = [
     {
       id: 1,
-      title: 'Website development',
+      title: "Website development",
     },
     {
       id: 2,
-      title: 'Logo Design',
+      title: "Logo Design",
     },
     {
       id: 3,
-      title: 'Image Optimization',
+      title: "Image Optimization",
     },
     {
       id: 4,
-      title: 'Website Maintenance',
+      title: "Website Maintenance",
     },
     {
       id: 5,
-      title: 'Custom Illustrations',
+      title: "Custom Illustrations",
     },
     {
       id: 6,
-      title: 'Custom Animations',
+      title: "Custom Animations",
     },
-  ]
+  ];
 
   const pages = [
     {
       id: 1,
-      title: 'Homepage',
+      title: "Homepage",
     },
     {
       id: 2,
-      title: 'Product Page',
+      title: "Product Page",
     },
     {
       id: 3,
-      title: 'Product Demo Page',
+      title: "Product Demo Page",
     },
     {
       id: 4,
-      title: 'Shipping Page',
+      title: "Shipping Page",
     },
     {
       id: 5,
-      title: 'Pricing Page',
+      title: "Pricing Page",
     },
     {
       id: 6,
-      title: 'Booking/Scheduling Page',
+      title: "Booking/Scheduling Page",
     },
     {
       id: 7,
-      title: 'Login/Sign Up page',
+      title: "Login/Sign Up page",
     },
     {
       id: 8,
-      title: 'Account Page',
+      title: "Account Page",
     },
     {
       id: 9,
-      title: 'Blog',
+      title: "Blog",
     },
     {
       id: 10,
-      title: 'About Page ',
+      title: "About Page ",
     },
     {
       id: 11,
-      title: 'Contact Page',
+      title: "Contact Page",
     },
     {
       id: 12,
-      title: 'Search Page',
+      title: "Search Page",
     },
     {
       id: 13,
-      title: 'Custom 404 Page',
+      title: "Custom 404 Page",
     },
-  ]
+  ];
   const features = [
     {
       id: 0,
-      title: 'Image Slider',
+      title: "Image Slider",
     },
     {
       id: 1,
-      title: 'Image Gallery',
+      title: "Image Gallery",
     },
     {
       id: 3,
-      title: 'Blog',
+      title: "Blog",
     },
     {
       id: 4,
-      title: 'Online Ordering',
+      title: "Online Ordering",
     },
     {
       id: 5,
-      title: 'Online Payment',
+      title: "Online Payment",
     },
     {
       id: 6,
-      title: 'Shopping Cart',
+      title: "Shopping Cart",
     },
     {
       id: 7,
-      title: 'Login/Registration',
+      title: "Login/Registration",
     },
     {
       id: 8,
-      title: 'Newsletter',
+      title: "Newsletter",
     },
     {
       id: 9,
-      title: 'Search',
+      title: "Search",
     },
     {
       id: 10,
-      title: 'Video Streaming ',
+      title: "Video Streaming ",
     },
     {
       id: 11,
-      title: 'Forms',
+      title: "Forms",
     },
     {
       id: 12,
-      title: 'Social Media Buttons',
+      title: "Social Media Buttons",
     },
     {
       id: 13,
-      title: 'Call to Action buttons',
+      title: "Call to Action buttons",
     },
     {
       id: 14,
-      title: 'Pricing Tables',
+      title: "Pricing Tables",
     },
     {
       id: 15,
-      title: 'Maps',
+      title: "Maps",
     },
     {
       id: 16,
-      title: 'Other',
+      title: "Other",
     },
-  ]
+  ];
   const branding = [
     {
       id: 1,
-      title: 'Color and Font ',
+      title: "Color and Font ",
     },
     {
       id: 2,
-      title: 'Logo',
+      title: "Logo",
     },
     {
       id: 3,
-      title: 'Tagline',
+      title: "Tagline",
     },
     {
       id: 4,
-      title: 'Images',
+      title: "Images",
     },
     {
       id: 5,
-      title: 'Sitemap',
+      title: "Sitemap",
     },
     {
       id: 6,
-      title: 'Content',
+      title: "Content",
     },
-  ]
+  ];
 
   return (
     <div className="min-h-screen antialiased pt-10 bg-gray-100 flex items-center justify-center p-6">
@@ -382,14 +382,14 @@ const WebDesignQuestionnaire = () => {
         onSubmit={sendEmail}
         // onSubmit={handleSubmit}
       >
-        <div className="flex items-center justify-center">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-6 px-4 py-8">
           <img
             src={img}
             className="w-48 h-48 mr-4 -rotate-12 "
             alt="complete design"
           />
-          <h1 className="text-7xl font-bold text-center text-cyan-600">
-            WebDesign <span className="text-cyan-800"> Questionnaire</span>{' '}
+          <h1 className="text-6xl md:text-7xl font-bold text-center text-cyan-600">
+            WebDesign <span className="text-cyan-800"> Questionnaire</span>{" "}
           </h1>
         </div>
 
@@ -401,7 +401,7 @@ const WebDesignQuestionnaire = () => {
             name="date"
             value={formData.date}
             onChange={handleChange}
-            className="ring-1 ring-gray-300 w-full rounded-md px-4 mt-2 py-2 outline-none focus:ring-2 focus:ring-teal-300"
+            className="ring-1 ring-gray-300 w-full rounded-md px-4 mt-2 py-2 outline-none focus:ring-2 focus:ring-cyan-600"
           />
         </div>
 
@@ -413,7 +413,7 @@ const WebDesignQuestionnaire = () => {
             name="client"
             value={formData.client}
             onChange={handleChange}
-            className="ring-1 ring-gray-300 w-full rounded-md px-4 mt-2 py-2 outline-none focus:ring-2 focus:ring-teal-300"
+            className="ring-1 ring-gray-300 w-full rounded-md px-4 mt-2 py-2 outline-none focus:ring-2 focus:ring-cyan-600"
             placeholder="Enter name"
           />
         </div>
@@ -426,7 +426,7 @@ const WebDesignQuestionnaire = () => {
             name="businessName"
             value={formData.businessName}
             onChange={handleChange}
-            className="ring-1 ring-gray-300 w-full rounded-md px-4 mt-2 py-2 outline-none focus:ring-2 focus:ring-teal-300"
+            className="ring-1 ring-gray-300 w-full rounded-md px-4 mt-2 py-2 outline-none focus:ring-2 focus:ring-cyan-600"
             placeholder="Enter business name"
           />
         </div>
@@ -439,7 +439,7 @@ const WebDesignQuestionnaire = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="ring-1 ring-gray-300 w-full rounded-md px-4 mt-2 py-2 outline-none focus:ring-2 focus:ring-teal-300"
+            className="ring-1 ring-gray-300 w-full rounded-md px-4 mt-2 py-2 outline-none focus:ring-2 focus:ring-cyan-600"
             placeholder="Enter your email address"
           />
         </div>
@@ -451,12 +451,12 @@ const WebDesignQuestionnaire = () => {
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            className="ring-1 ring-gray-300 w-full rounded-md px-4 mt-2 py-2 outline-none focus:ring-2 focus:ring-teal-300"
+            className="ring-1 ring-gray-300 w-full rounded-md px-4 mt-2 py-2 outline-none focus:ring-2 focus:ring-cyan-600"
             placeholder="Enter your phone number"
           />
         </div>
         <h1 className="text-4xl font-bold text-center ">
-          {' '}
+          {" "}
           Brand-Related Questions
         </h1>
         {/* Products and Services */}
@@ -467,7 +467,7 @@ const WebDesignQuestionnaire = () => {
             value={formData.newOrRedesign}
             rows={4}
             onChange={handleChange}
-            className="ring-1 ring-gray-300 w-full rounded-md px-4 mt-2 py-2 outline-none focus:ring-2 focus:ring-teal-300"
+            className="ring-1 ring-gray-300 w-full rounded-md px-4 mt-2 py-2 outline-none focus:ring-2 focus:ring-cyan-600"
             placeholder="Do you want to build a new website or redesign an existing one?"
           />
         </div>
@@ -481,7 +481,7 @@ const WebDesignQuestionnaire = () => {
             value={formData.productsAndServices}
             rows={4}
             onChange={handleChange}
-            className="ring-1 ring-gray-300 w-full rounded-md px-4 mt-2 py-2 outline-none focus:ring-2 focus:ring-teal-300"
+            className="ring-1 ring-gray-300 w-full rounded-md px-4 mt-2 py-2 outline-none focus:ring-2 focus:ring-cyan-600"
             placeholder="What are your products and services?"
           />
         </div>
@@ -494,7 +494,7 @@ const WebDesignQuestionnaire = () => {
             value={formData.idealCustomers}
             onChange={handleChange}
             rows={4}
-            className="ring-1 ring-gray-300 w-full rounded-md px-4 mt-2 py-2 outline-none focus:ring-2 focus:ring-teal-300"
+            className="ring-1 ring-gray-300 w-full rounded-md px-4 mt-2 py-2 outline-none focus:ring-2 focus:ring-cyan-600"
             placeholder="Describe your ideal customers"
           />
         </div>
@@ -674,7 +674,7 @@ const WebDesignQuestionnaire = () => {
             name="timeframe"
             value={formData.timeframe}
             onChange={handleChange}
-            className="ring-1 ring-gray-300 w-full rounded-md px-4 mt-2 py-2 outline-none focus:ring-2 focus:ring-teal-300"
+            className="ring-1 ring-gray-300 w-full rounded-md px-4 mt-2 py-2 outline-none focus:ring-2 focus:ring-cyan-600"
             placeholder="What is your timeframe?"
           />
         </div>
@@ -687,7 +687,7 @@ const WebDesignQuestionnaire = () => {
             name="budget"
             value={formData.budget}
             onChange={handleChange}
-            className="ring-1 ring-gray-300 w-full rounded-md px-4 mt-2 py-2 outline-none focus:ring-2 focus:ring-teal-300"
+            className="ring-1 ring-gray-300 w-full rounded-md px-4 mt-2 py-2 outline-none focus:ring-2 focus:ring-cyan-600"
             placeholder="What is your budget?"
           />
         </div>
@@ -700,22 +700,23 @@ const WebDesignQuestionnaire = () => {
             value={formData.additionalNotes}
             rows={4}
             onChange={handleChange}
-            className="ring-1 ring-gray-300 w-full rounded-md px-4 mt-2 py-2 outline-none focus:ring-2 focus:ring-teal-300"
+            className="ring-1 ring-gray-300 w-full rounded-md px-4 mt-2 py-2 outline-none focus:ring-2 focus:ring-cyan-600"
             placeholder="Any additional notes, comments, or requests?"
           />
         </div>
 
         {/* Submit */}
-        <button
-          type="submit"
-          value="Send"
-          className="btn bg-cyan-500 w-1/4  rounded text-2xl font-bold"
-        >
-          Submit
-        </button>
+        <div className="mx-auto flex items-center justify-center ">
+          <button
+            type="submit"
+            value="Send"
+            className="btn bg-cyan-500 w-1/4 rounded text-2xl font-bold ">
+            Submit
+          </button>
+        </div>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default WebDesignQuestionnaire
+export default WebDesignQuestionnaire;
